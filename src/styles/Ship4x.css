@@ -1,0 +1,9 @@
+.ship4x {
+    background: rgba(0, 0, 0, 0.1);
+    width: 8vw;
+    height: 2vw;
+    clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
+    border-top-left-radius: 1vw;
+    border-bottom-left-radius: 1vw;
+    cursor: move;
+}
