@@ -12,8 +12,7 @@ const Loading = ({ height, width }) => {
   const [isActive, setIsActive] = useState(true);
   const [dotCount, setDotCount] = useState(1);
   const navigate = useNavigate();
-  
- 
+
   const Parentdiv = {
     height: height,
     width: width || "100%",
@@ -58,7 +57,7 @@ const Loading = ({ height, width }) => {
   };
   useEffect(() => {
     let interval = null;
-    if (isActive && progress <= width * 0.8 - 10) {
+    if (isActive && progress <= width) {
       interval = setInterval(() => {
         setProgress((prevState) => {
           return prevState + Math.floor(Math.random() * 10) * 10;
@@ -70,9 +69,13 @@ const Loading = ({ height, width }) => {
     } else {
       clearInterval(interval);
       setIsActive(false);
-      // navigate('/dgerdg')
+      console.log(progress);
+      navigate("/game");
     }
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      // setInterval(()=>{navigate("/game");},5000)
+    };
   }, [isActive, progress]);
 
   return (
@@ -95,7 +98,7 @@ const Loading = ({ height, width }) => {
           />
         </div>
         <div>
-          <div  className="container">
+          <div className="container">
             <div style={Parentdiv}>
               <div style={Childdiv} />
             </div>
