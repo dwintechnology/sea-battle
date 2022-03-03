@@ -1,9 +1,10 @@
 import './App.css';
+import Loading from './components/loading';
 
 function App() {
   return (
     <div className="App">
-     <h1>sea battle</h1>
+     <Loading  height={60} width={700} />
     </div>
   );
 }

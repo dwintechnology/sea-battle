@@ -1,0 +1,94 @@
+.loadingBody {
+  width: 100%;
+  background-color: black;
+  height: 100vh;
+  display: flex;
+}
+
+.container{
+display:flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+.ship {
+  top: 10%;
+  left: 40%;
+  position: absolute;
+  animation-name: example;
+  animation-duration: 10s;
+}
+@keyframes example {
+  0% {
+    left: 30%;
+  }
+  100% {
+    left: 40%;
+  }
+}
+
+.ship2 {
+  top: 32%;
+  left: 25%;
+  position: absolute;
+  animation-name: exampleShip2;
+  animation-duration: 10s;
+}
+@keyframes exampleShip2 {
+  0% {
+    top: 42%;
+  }
+
+  100% {
+    top: 32%;
+  }
+}
+.ship3 {
+  top: -5%;
+  left: 13%;
+  position: absolute;
+  transform: rotate(180deg);
+  animation-name: exampleShip3;
+  animation-duration: 10s;
+}
+@keyframes exampleShip3 {
+  0% {
+    top: -5%;
+  }
+
+  100% {
+    top: 5%;
+  }
+}
+.ship4 {
+  top: 30%;
+  left: 75%;
+  position: absolute;
+  animation-name: exampleShip4;
+  animation-duration: 10s;
+}
+@keyframes exampleShip4 {
+  0% {
+    top: 35%;
+  }
+
+  100% {
+    top: 25%;
+  }
+}
+.ship5 {
+  top: 70%;
+  left: 70%;
+  position: absolute;
+  animation-name: exampleShip5;
+  animation-duration: 10s;
+}
+@keyframes exampleShip5 {
+  0% {
+    left: 70%;
+  }
+
+  100% {
+    left: 60%;
+  }
+}
