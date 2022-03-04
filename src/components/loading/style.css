@@ -3,27 +3,37 @@
   background-color: black;
   height: 100vh;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.container{
-display:flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
+
+
 .ship {
   top: 10%;
   left: 40%;
   position: absolute;
   animation-name: example;
-  animation-duration: 10s;
+  animation-duration: 8s;
 }
 @keyframes example {
   0% {
     left: 30%;
   }
-  100% {
+  25% {
+    left: 35%;
+  }
+  50% {
     left: 40%;
+  }
+  100% {
+    left: 50%;
   }
 }
 
@@ -32,15 +42,20 @@ flex-direction: column;
   left: 25%;
   position: absolute;
   animation-name: exampleShip2;
-  animation-duration: 10s;
+  animation-duration: 8s;
 }
 @keyframes exampleShip2 {
   0% {
+    top: 52%;
+  }
+  25% {
     top: 42%;
   }
-
-  100% {
+  50% {
     top: 32%;
+  }
+  100% {
+    top: 22%;
   }
 }
 .ship3 {
@@ -49,15 +64,20 @@ flex-direction: column;
   position: absolute;
   transform: rotate(180deg);
   animation-name: exampleShip3;
-  animation-duration: 10s;
+  animation-duration: 8s;
 }
 @keyframes exampleShip3 {
   0% {
     top: -5%;
   }
-
+  25% {
+    top: 0%;
+  }
+  50% {
+    top: 10%;
+  }
   100% {
-    top: 5%;
+    top: 15%;
   }
 }
 .ship4 {
@@ -65,15 +85,18 @@ flex-direction: column;
   left: 75%;
   position: absolute;
   animation-name: exampleShip4;
-  animation-duration: 10s;
+  animation-duration: 8s;
 }
 @keyframes exampleShip4 {
   0% {
-    top: 35%;
+    top: 30%;
+  }
+  25% {
+    top: 20%;
   }
 
   100% {
-    top: 25%;
+    top: 10%;
   }
 }
 .ship5 {
@@ -81,14 +104,19 @@ flex-direction: column;
   left: 70%;
   position: absolute;
   animation-name: exampleShip5;
-  animation-duration: 10s;
+  animation-duration: 8s;
 }
 @keyframes exampleShip5 {
   0% {
     left: 70%;
   }
-
-  100% {
+  25% {
+    left: 65%;
+  }
+  50% {
     left: 60%;
+  }
+  100% {
+    left: 55%;
   }
 }
