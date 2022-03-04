@@ -1,0 +1,13 @@
+.noKilled {
+    width: 0.8vw;
+    height: 0.8vw;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.killed {
+    width: 0.9vw;
+    height: 0.9vw;
+    border-radius: 50%;
+    background-color: #FF0055;;
+}

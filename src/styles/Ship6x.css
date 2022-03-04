@@ -1,7 +1,10 @@
 .ship6x{
-    background: rgba(0, 0, 0, 0.1);
+    background: rgb(215 213 213);
     width: 12vw;
     height: 2vw;
     border-radius: 0.5vh;
     cursor: move;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
