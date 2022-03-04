@@ -1,20 +1,16 @@
-import './App.css';
-import Board from './components/Board';
-import Ship2x from './components/Ship2x';
-import Ship3x from './components/Ship3x';
-import Ship4x from './components/Ship4x';
-import Ship6x from './components/Ship6x';
+import React from "react";
+import { Route, Routes } from "react-router";
+import "./App.css";
+import Loading from "./components/loading";
+import TheGame from "./components/TheGame";
 
 function App() {
   return (
     <div className="App">
-     <h1>sea battle</h1>
-     <Board versionUser={true}/>
-     <Board versionUser={false}/>
-     <Ship2x/>
-     <Ship3x/>
-     <Ship4x/>
-     <Ship6x/>
+      <Routes>
+        <Route path="/" element={<Loading />} />
+        <Route path="/game" element={<TheGame />} />
+      </Routes>
     </div>
   );
 }

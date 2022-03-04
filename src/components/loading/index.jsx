@@ -7,16 +7,14 @@ import Ship4 from "../../assets/img/Ship4.svg";
 import Ship5 from "../../assets/img/Ship5.svg";
 import { useNavigate } from "react-router";
 import "./style.css";
-const Loading = ({ height, width }) => {
+const Loading = () => {
   const [progress, setProgress] = useState(10);
-  const [isActive, setIsActive] = useState(true);
   const [dotCount, setDotCount] = useState(1);
   const navigate = useNavigate();
-  
- 
+
   const Parentdiv = {
-    height: height,
-    width: width || "100%",
+    height: 66,
+    width: 700,
     backgroundColor: "whitesmoke",
     borderRadius: 12,
     display: "flex",
@@ -26,7 +24,6 @@ const Loading = ({ height, width }) => {
   const Childdiv = {
     height: "100%",
     width: progress,
-    backgroundColor: "orange",
     display: "flex",
     alignItems: "center",
     backgroundColor: "#FF0055",
@@ -48,9 +45,7 @@ const Loading = ({ height, width }) => {
 
   const loadDiv = {
     marginTop: "200px",
-    width: "70%",
-    height: "800px",
-    marginLeft: "15%",
+    width: "100%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -58,7 +53,7 @@ const Loading = ({ height, width }) => {
   };
   useEffect(() => {
     let interval = null;
-    if (isActive && progress <= width * 0.8 - 10) {
+    if (progress <= Parentdiv.width) {
       interval = setInterval(() => {
         setProgress((prevState) => {
           return prevState + Math.floor(Math.random() * 10) * 10;
@@ -69,11 +64,13 @@ const Loading = ({ height, width }) => {
       }, 300);
     } else {
       clearInterval(interval);
-      setIsActive(false);
-      // navigate('/dgerdg')
+      console.log(progress);
+      navigate("/game");
     }
-    return () => clearInterval(interval);
-  }, [isActive, progress]);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [progress]);
 
   return (
     <div className="loadingBody">
@@ -88,14 +85,14 @@ const Loading = ({ height, width }) => {
             THE CLASSIC NAVAL COMBAT GAME
           </p>
         </div>
-        <div>
+       
           <img
-            style={{ maxWidth: "700px", marginBottom: "70px" }}
+            style={{ width: "40%", paddingBottom: "5%", margin: "0 auto" }}
             src={Battleship}
           />
-        </div>
+
         <div>
-          <div  className="container">
+          <div className="container">
             <div style={Parentdiv}>
               <div style={Childdiv} />
             </div>
