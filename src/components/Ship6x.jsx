@@ -1,5 +1,5 @@
-import '../styles/Ship6x.css'
-import MarkOnShip from './MarkOnShip'
+import "../styles/Ship6x.css";
+import MarkOnShip from "./MarkOnShip";
 
 export default function Ship6x({ state }) {
   return (

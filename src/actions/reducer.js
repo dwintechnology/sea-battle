@@ -47,16 +47,16 @@ const defaultState = [
         isHorizontal: true,
         status: [true, true, true, false, false, false]
     }
-]
+];
+
 
 export const reducer = (state = defaultState, action) => {
+    const copy = [...state];
     switch (action.type) {
-        case 'ADD':
-            const copy = [...state]
-            copy.push(action.payload)
-            return copy
-
+        case "ADD":
+            copy.push(action.payload);
+            return copy;
         default:
-            return state
+            return state;
     }
-}
+};

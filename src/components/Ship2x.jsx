@@ -1,5 +1,5 @@
-import '../styles/Ship2x.css'
-import MarkOnShip from './MarkOnShip'
+import "../styles/Ship2x.css";
+import MarkOnShip from "./MarkOnShip";
 
 export default function Ship2x({ state }) {
   return (

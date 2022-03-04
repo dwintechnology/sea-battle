@@ -1,13 +1,17 @@
-import './App.css';
-import Board from './components/Board';
+import "./App.css";
+import React from "react";
+import { Route, Routes } from "react-router";
+import Loading from "./components/loading";
+import TheGame from "./components/TheGame";
+
 
 function App() {
   return (
     <div className="App">
-      <div style={{display: 'flex', justifyContent: 'space-between', padding: '0 15%'}}>
-        <Board versionUser={true}/>
-        <Board versionUser={false}/>
-      </div>
+      <Routes>
+        <Route path="/" element={<Loading />} />
+        <Route path="/game" element={<TheGame />} />
+      </Routes>
     </div>
   );
 }
