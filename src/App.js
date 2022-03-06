@@ -4,6 +4,7 @@ import "./App.css";
 import Loading from "./components/loading";
 import TheGame from "./components/TheGame";
 
+
 function App() {
   return (
     <div className="App">

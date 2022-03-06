@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import "./style.css";
 import Battleship from "../../assets/img/Battleship.png";
 import Ship from "../../assets/img/Ship.svg";
 import Ship2 from "../../assets/img/Ship2.svg";
 import Ship3 from "../../assets/img/Ship3.svg";
 import Ship4 from "../../assets/img/Ship4.svg";
 import Ship5 from "../../assets/img/Ship5.svg";
-import { useNavigate } from "react-router";
-import "./style.css";
+
 const Loading = () => {
   const [progress, setProgress] = useState(10);
   const [dotCount, setDotCount] = useState(1);
