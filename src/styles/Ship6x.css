@@ -1,8 +1,9 @@
 .ship6x{
     background: rgb(215 213 213);
+    clip-path: polygon(0% 0%, 0% 0%, 100% 0%, 100% 105%, 0% 100%);
     width: 12vw;
     height: 2vw;
-    border-radius: 0.5vh;
+    border-radius: 2.5vh;
     cursor: move;
     display: flex;
     justify-content: space-around;

@@ -8,7 +8,7 @@ import Ship4x from "./Ship4x";
 import Ship6x from "./Ship6x";
 import { useDispatch, useSelector } from "react-redux";
 import "../styles/Board.css";
-// import MarkOnShip from "./MarkOnShip";
+import MarkOnShip from "./MarkOnShip";
 
 Board.propTypes = {
     versionUser: PropTypes.bool,
@@ -27,9 +27,7 @@ export default function Board({ versionUser = true, player }) {
     let lastShoot = obj[`${player}Shoots`][obj[`${player}Shoots`].length - 1];
 
     function getPosition(event, i, j) {
-        console.log(event);
         event.target.style.backgroundColor = "rgba(26, 52, 68, 0.2)";
-        // event.target.dataset =  <MarkOnShip state={false}/>;
         dispatch({
             type: "SHOOT", payload: {
                 player: player,
@@ -39,8 +37,8 @@ export default function Board({ versionUser = true, player }) {
         });
     }
 
-    
-    function hit(player,index,inHitIndex){
+
+    function hit(player, index, inHitIndex) {
         dispatch({
             type: "IS_HIT", payload: {
                 player: player,
@@ -62,7 +60,7 @@ export default function Board({ versionUser = true, player }) {
                 )}
                 {constants.boardLetter.map((el, i) =>
                     <>
-                        <div key={0} className="grid-item">{i + 1}</div>
+                        <div key={i} className="grid-item">{i + 1}</div>
                         {constants.boardLetter.map((el, j) =>
                             <div key={el} id={i + 1 + el} onClick={(event) => { getPosition(event, i, j); }} className={clsx([versionUser ? "blueBg" : "grayBg", "grid-item , playingField"])}></div>
                         )}
@@ -78,26 +76,22 @@ export default function Board({ versionUser = true, player }) {
                         {el.ship === "Ship6x" && <Ship6x state={el.status} />}
                     </div>
                 )}
-{/* obj[`${player}Shoots`][obj[`${player}Shoots`].length - 1] */}
-                {obj[player]?.map((el, index)=>{
-                    if(obj[`${player}Shoots`].length != 0 &&  el.positionX - 1 <= lastShoot.positionX && el.positionY - 1 == lastShoot.positionY && el.isHorizontal == true && (el.positionX + el.length-1)  >= lastShoot.positionX){
-                        console.log("el.positionX - 1", el.positionX - 1);
-                        console.log("lastShoot.positionX", lastShoot.positionX);
-                        console.log("el.positionY - 1", el.positionY - 1);
-                        console.log("lastShoot.positionY", lastShoot.positionY);
-                        console.log("(el.positionX + el.length )", el.positionX + el.length);
-                        console.log("(lastShoot.positionX )", lastShoot.positionX);
-
-                       if(obj[player][index].status[lastShoot.positionX - 1] == false){
-                           hit(player,index,lastShoot.positionX - 1);
-                       }
+                {obj[player]?.map((el, index) => {
+                    if (obj[`${player}Shoots`].length != 0 && el.positionX - 1 <= lastShoot.positionX && el.positionY - 1 == lastShoot.positionY && el.isHorizontal == true && (el.positionX - 1 + el.length - 1) >= lastShoot.positionX) {
+                        if (obj[player][index].status[(el.length - 1) - ((el.positionX - 2) + (el.length) - (lastShoot.positionX))] == false) {
+                            hit(player, index, (el.length - 1) - ((el.positionX - 2) + (el.length) - (lastShoot.positionX)));
+                        }
                     }
-                })
-                }
-
-                    {/* // <div key={i} style={{ gridColumnStart: el.positionX + 1, gridRowStart: el.positionY + 1 }} className="grid-item">
-                    //     <MarkOnShip state={false} />
-                    // </div> */}
+                })}
+                {obj[`${player}Shoots`].map((el, i) => {
+                    if (el.isHit == false) {
+                        return (
+                            <div key={i} style={{ gridColumnStart: el.positionX + 1, gridRowStart: el.positionY + 1 }} className="grid-item">
+                                <MarkOnShip state={false} />
+                            </div>
+                        );
+                    }
+                })}
             </div>}
         </div>
     );
