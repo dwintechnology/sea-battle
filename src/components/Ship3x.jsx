@@ -1,5 +1,7 @@
+import React from "react";
 import "../styles/Ship3x.css";
 import MarkOnShip from "./MarkOnShip";
+import PropTypes from "prop-types";
 
 export default function Ship3x({ state }) {
   return (
@@ -8,5 +10,9 @@ export default function Ship3x({ state }) {
          <MarkOnShip state={el} key={i}/>
       )}
     </div>
-  )
+  );
 }
+
+Ship3x.propTypes = {
+  state: PropTypes.array,
+};

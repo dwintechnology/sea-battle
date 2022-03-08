@@ -64,7 +64,6 @@ const Loading = () => {
       }, 300);
     } else {
       clearInterval(interval);
-      console.log(progress);
       navigate("/game");
     }
     return () => {

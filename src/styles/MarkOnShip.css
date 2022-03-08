@@ -2,12 +2,59 @@
     width: 0.8vw;
     height: 0.8vw;
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgb(193 191 191);
 }
 
 .killed {
     width: 0.9vw;
     height: 0.9vw;
     border-radius: 50%;
-    background-color: #FF0055;;
+    background-color: #FF0055;
+    ;
+}
+
+
+@media screen and (max-width: 900px) {
+
+    .killed,
+    .noKilled {
+        width: 1.1vw;
+        height: 1.1vw;
+    }
+}
+
+@media screen and (max-width: 750px) {
+
+    .killed,
+    .noKilled {
+        width: 1.6vw;
+        height: 1.6vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .killed,
+    .noKilled {
+        width: 2vw;
+        height: 2vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .killed,
+    .noKilled {
+        width: 2.4vw;
+        height: 2.4vw;
+    }
+}
+
+@media screen and (max-width: 400px) {
+
+    .killed,
+    .noKilled {
+        width: 3.2vw;
+        height: 3.2vw;
+    }
 }

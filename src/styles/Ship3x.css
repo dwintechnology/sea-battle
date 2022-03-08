@@ -8,3 +8,39 @@
     justify-content: space-around;
     align-items: center;
 }
+
+
+@media screen and (max-width: 900px) {
+    .ship3x {
+        width: 9vw;
+        height: 3vw;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .ship3x {
+        width: 12vw;
+        height: 4vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .ship3x {
+        width: 15vw;
+        height: 5vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .ship3x {
+        width: 18vw;
+        height: 6vw;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .ship3x {
+        width: 21vw;
+        height: 7vw;
+    }
+}
