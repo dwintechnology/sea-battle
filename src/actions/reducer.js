@@ -105,26 +105,29 @@ const defaultState = {
 export const reducer = (state = defaultState, action) => {
     switch (action.type) {
         case "SHOOT": {
+            let findInShots = state[action.payload.player == "player1" ? "player2Shoots" : "player1Shoots"].find(el=> (el.positionX == action.payload.positionX && el.positionY == action.payload.positionY));
             const copy = {
                 ...state
             };
-            const player = action.payload.player;
-            const positionX = action.payload.positionX;
-            const positionY = action.payload.positionY;
-
-            if (player == "player1") {
-                copy.player2Shoots.push({
-                    positionX,
-                    positionY,
-                    isHit: false,
-                });
-            } else {
-                copy.player1Shoots.push({
-                    positionX,
-                    positionY,
-                    isHit: false,
-                });
-            }
+            if(findInShots == undefined){
+                const player = action.payload.player;
+                const positionX = action.payload.positionX;
+                const positionY = action.payload.positionY;
+    
+                if (player == "player1") {
+                    copy.player2Shoots.push({
+                        positionX,
+                        positionY,
+                        isHit: false,
+                    });
+                } else {
+                    copy.player1Shoots.push({
+                        positionX,
+                        positionY,
+                        isHit: false,
+                    });
+                }
+            } 
             return copy;
         }
         case "IS_HIT": {

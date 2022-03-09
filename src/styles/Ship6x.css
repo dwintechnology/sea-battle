@@ -9,6 +9,7 @@
     justify-content: space-around;
     align-items: center;
 }
+/* clip-path: polygon(50% 0%, 100% 15%, 100% 100%, 0% 100%, 0% 15%); Для вертикального поворота*/
 
 
 @media screen and (max-width: 900px) {

@@ -20,14 +20,14 @@ Board.defaultProps = {
 };
 
 
-export default function Board({ versionUser = true, player }) {
+export default function Board({ versionUser, player }) {
 
     const obj = useSelector(state => state);
     const dispatch = useDispatch();
     let lastShoot = obj[`${player}Shoots`][obj[`${player}Shoots`].length - 1];
 
+
     function getPosition(event, i, j) {
-        event.target.style.backgroundColor = "rgba(26, 52, 68, 0.2)";
         dispatch({
             type: "SHOOT", payload: {
                 player: player,
@@ -35,6 +35,7 @@ export default function Board({ versionUser = true, player }) {
                 positionX: j + 1,
             }
         });
+
     }
 
 
@@ -61,8 +62,20 @@ export default function Board({ versionUser = true, player }) {
                 {constants.boardLetter.map((el, i) =>
                     <>
                         <div key={i} className="grid-item">{i + 1}</div>
-                        {constants.boardLetter.map((el, j) =>
-                            <div key={el} id={i + 1 + el} onClick={(event) => { getPosition(event, i, j); }} className={clsx([versionUser ? "blueBg" : "grayBg", "grid-item , playingField"])}></div>
+                        {constants.boardLetter.map((el, j) => {
+                            const shootInPosition = obj[player == "player1" ? "player2Shoots" : "player1Shoots"].find(shoot => shoot.positionX === j + 1 && shoot.positionY === i + 1);
+                            if (versionUser === false && shootInPosition) {
+                                return (
+                                    <div key={el} id={i + 1 + el} className={clsx([versionUser ? "blueBg" : "grayBg", "grid-item , playingField"])}>
+                                        <MarkOnShip state={shootInPosition.isHit} />
+                                    </div>
+                                );
+
+                            }
+                            return (
+                                <div key={el} id={i + 1 + el} onClick={(event) => { getPosition(event, i, j); }} className={clsx([versionUser ? "blueBg" : "grayBg", "grid-item , playingField"])}></div>
+                            );
+                        }
                         )}
                     </>
                 )}
