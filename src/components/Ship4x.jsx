@@ -1,7 +1,14 @@
 import React from "react";
 
 import "../styles/Ship4x.css";
+import MarkOnShip from "./MarkOnShip";
 
-export default function Ship4x() {
-  return <div className="ship4x"></div>;
+export default function Ship4x({ state }) {
+  return (
+    <div className="ship4x">
+      {state?.map((el, i) => (
+        <MarkOnShip state={el} key={i} />
+      ))}
+    </div>
+  );
 }
