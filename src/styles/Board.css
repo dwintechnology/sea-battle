@@ -2,6 +2,10 @@
     border: 1px solid rgb(20, 190, 162);
 } */
 
+.wrapper-grid {
+    position: relative;
+}
+
 .grid-container {
     --item-size: 2vw;
 
@@ -12,10 +16,14 @@
     grid-template-columns: repeat(11, var(--item-size));
     grid-template-rows: repeat(11, var(--item-size));
     grid-auto-rows: var(--item-size);
-    width: 35vh;
     color: rgba(113, 124, 150, 0.7);
     font-size: 12px;
     font-weight: 900;
+}
+
+.transparent-grid-container {
+  position: absolute;
+  top: 0;
 }
 
 .grid-item {

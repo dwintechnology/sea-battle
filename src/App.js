@@ -1,3 +1,4 @@
+import "./App.css";
 import React from "react";
 import { Route, Routes } from "react-router";
 import "./App.css";
@@ -5,7 +6,6 @@ import BattleShip from "./components/battleShip";
 import GameBattleShip from "./components/gameBattleShip";
 import { InsertShipsPlayerOne } from "./components/insertShipsPlayerOne";
 import { InsertShipsPlayerTwo } from "./components/insertShipsPlayerTwo";
-
 import Loading from "./components/loading";
 import PlayerOneShoot from "./components/playerOneShoot";
 import PlayerTwoShoot from "./components/playerTwoShoot";
@@ -23,7 +23,6 @@ function App() {
         <Route path="/game/playerOneShoot" element={<PlayerOneShoot />} />
         <Route path="/game/playerTwoShoot" element={<PlayerTwoShoot />} />
         <Route path="/game/battleShip" element={<GameBattleShip />} />
-
       </Routes>
     </div>
   );
