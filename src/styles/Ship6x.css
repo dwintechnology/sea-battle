@@ -1,10 +1,48 @@
 .ship6x{
     background: rgb(215 213 213);
+    clip-path: polygon(0% 0%, 0% 0%, 100% 0%, 100% 105%, 0% 100%);
     width: 12vw;
     height: 2vw;
-    border-radius: 0.5vh;
+    border-radius: 2.5vh;
     cursor: move;
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+/* clip-path: polygon(50% 0%, 100% 15%, 100% 100%, 0% 100%, 0% 15%); Для вертикального поворота*/
+
+
+@media screen and (max-width: 900px) {
+    .ship6x {
+        width: 18vw;
+        height: 3vw;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .ship6x {
+        width: 24vw;
+        height: 4vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .ship6x {
+        width: 30vw;
+        height: 5vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .ship6x {
+        width: 36vw;
+        height: 6vw;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .ship6x {
+        width: 42vw;
+        height: 7vw;
+    }
 }

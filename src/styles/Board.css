@@ -49,3 +49,33 @@
 .grayBg {
     background: rgba(157, 157, 157, 0.2);
 }
+
+@media screen and (max-width: 900px) {
+    .grid-container {
+        --item-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .grid-container {
+        --item-size: 4vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .grid-container {
+        --item-size: 5vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .grid-container {
+        --item-size: 6vw;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .grid-container {
+        --item-size: 7vw;
+    }
+}
