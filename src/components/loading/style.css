@@ -3,7 +3,16 @@
   background-color: black;
   height: 100vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
@@ -13,7 +22,6 @@
   justify-content: center;
   flex-direction: column;
 }
-
 
 .ship {
   top: 10%;
@@ -100,7 +108,7 @@
   }
 }
 .ship5 {
-  top: 70%;
+  top: 80%;
   left: 70%;
   position: absolute;
   animation-name: exampleShip5;

@@ -43,14 +43,7 @@ const Loading = () => {
     marginLeft: "25%",
   };
 
-  const loadDiv = {
-    marginTop: "200px",
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContetn: "center",
-  };
+  
   useEffect(() => {
     let interval = null;
     if (progress <= Parentdiv.width) {
@@ -64,7 +57,8 @@ const Loading = () => {
       }, 300);
     } else {
       clearInterval(interval);
-      navigate("/game");
+      console.log(progress);
+      navigate("/insert/playerOne");
     }
     return () => {
       clearInterval(interval);
@@ -73,7 +67,7 @@ const Loading = () => {
 
   return (
     <div className="loadingBody">
-      <div style={loadDiv}>
+      <div className="loadDiv" >
         <div
           style={{
             display: "flex",
