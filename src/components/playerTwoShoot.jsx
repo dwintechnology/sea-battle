@@ -12,6 +12,8 @@ export default function PlayerTwoShoot() {
           <Board versionUser={false} player={"player2"} />
         </div>
       </div>
+      <Board versionUser={true} player={"player2"}/>
+      <Board versionUser={false} player={"player2"}/>
       <button onClick={() => navigate("/game/battleShip")}>player 2</button>
     </div>
   );
