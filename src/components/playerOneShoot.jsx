@@ -1,5 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import {useNavigate } from "react-router";
+import Board from "./Board";
 
 export default function PlayerOneShoot() {
   const navigate = useNavigate();
@@ -7,6 +8,9 @@ export default function PlayerOneShoot() {
     <div>
       <div>
         Player One please move your mouse over the board and click to shoot
+        <div>
+          <Board versionUser={false} player={"player1"} />
+        </div>
       </div>
       <button onClick={() => navigate("/game/battleShip")}>player 2</button>
     </div>

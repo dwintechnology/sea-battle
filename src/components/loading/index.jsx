@@ -14,7 +14,7 @@ const Loading = () => {
 
   const Parentdiv = {
     height: 66,
-    width: 700,
+    width: 900,
     backgroundColor: "whitesmoke",
     borderRadius: 12,
     display: "flex",
@@ -36,8 +36,8 @@ const Loading = () => {
     color: "white",
     fontWeight: 900,
     display: "flex",
-    fontSize: "25px",
-    padding: "30px",
+    fontSize: "30px",
+    padding: "40px",
     width: "50%",
     alignItems: "center",
     marginLeft: "25%",
@@ -58,7 +58,7 @@ const Loading = () => {
     } else {
       clearInterval(interval);
       console.log(progress);
-      navigate("/insert/playerOne");
+      navigate("/game");
     }
     return () => {
       clearInterval(interval);
