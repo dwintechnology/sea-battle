@@ -24,10 +24,8 @@ export default function Board({ versionUser, player }) {
 
     const obj = useSelector(state => state);
     const dispatch = useDispatch();
-    let lastShoot = obj[`${player}Shoots`][obj[`${player}Shoots`].length - 1];
 
-
-    function getPosition(event, i, j) {
+    function getPosition(i, j) {
         dispatch({
             type: "SHOOT", payload: {
                 player: player,
@@ -35,22 +33,7 @@ export default function Board({ versionUser, player }) {
                 positionX: j + 1,
             }
         });
-
     }
-
-
-    function hit(player, index, inHitIndex) {
-        dispatch({
-            type: "IS_HIT", payload: {
-                player: player,
-                index: index,
-                inHitIndex: inHitIndex,
-            }
-        });
-    }
-
-
-
 
     return (
         <div className="wrapper-grid">
@@ -73,7 +56,7 @@ export default function Board({ versionUser, player }) {
 
                             }
                             return (
-                                <div key={el} id={i + 1 + el} onClick={(event) => { getPosition(event, i, j); }} className={clsx([versionUser ? "blueBg" : "grayBg", "grid-item , playingField"])}></div>
+                                <div key={el} id={i + 1 + el} onClick={() => { getPosition(i, j); }} className={clsx([versionUser ? "blueBg" : "grayBg", "grid-item , playingField"])}></div>
                             );
                         }
                         )}
@@ -89,13 +72,6 @@ export default function Board({ versionUser, player }) {
                         {el.ship === "Ship6x" && <Ship6x state={el.status} />}
                     </div>
                 )}
-                {obj[player]?.map((el, index) => {
-                    if (obj[`${player}Shoots`].length != 0 && el.positionX - 1 <= lastShoot.positionX && el.positionY - 1 == lastShoot.positionY && el.isHorizontal == true && (el.positionX - 1 + el.length - 1) >= lastShoot.positionX) {
-                        if (obj[player][index].status[(el.length - 1) - ((el.positionX - 2) + (el.length) - (lastShoot.positionX))] == false) {
-                            hit(player, index, (el.length - 1) - ((el.positionX - 2) + (el.length) - (lastShoot.positionX)));
-                        }
-                    }
-                })}
                 {obj[`${player}Shoots`].map((el, i) => {
                     if (el.isHit == false) {
                         return (

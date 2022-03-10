@@ -24,6 +24,7 @@ function App() {
         <Route path="/game/playerOneShoot" element={<PlayerOneShoot />} />
         <Route path="/game/playerTwoShoot" element={<PlayerTwoShoot />} />
         <Route path="/game/battleShip" element={<GameBattleShip />} />
+        <Route path="/varuj" element={<TheGame />} />
       </Routes>
     </div>
   );
