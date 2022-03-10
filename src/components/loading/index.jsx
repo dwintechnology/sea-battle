@@ -14,7 +14,7 @@ const Loading = () => {
 
   const Parentdiv = {
     height: 66,
-    width: 700,
+    width: 900,
     backgroundColor: "whitesmoke",
     borderRadius: 12,
     display: "flex",
