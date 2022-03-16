@@ -43,7 +43,6 @@ const Loading = () => {
     marginLeft: "25%",
   };
 
-  
   useEffect(() => {
     let interval = null;
     if (progress <= Parentdiv.width) {
@@ -57,7 +56,6 @@ const Loading = () => {
       }, 300);
     } else {
       clearInterval(interval);
-      console.log(progress);
       navigate("/insert/playerOne");
     }
     return () => {
@@ -67,7 +65,7 @@ const Loading = () => {
 
   return (
     <div className="loadingBody">
-      <div className="loadDiv" >
+      <div className="loadDiv">
         <div
           style={{
             display: "flex",
@@ -78,11 +76,11 @@ const Loading = () => {
             THE CLASSIC NAVAL COMBAT GAME
           </p>
         </div>
-       
-          <img
-            style={{ width: "40%", paddingBottom: "5%", margin: "0 auto" }}
-            src={Battleship}
-          />
+
+        <img
+          style={{ width: "40%", paddingBottom: "5%", margin: "0 auto" }}
+          src={Battleship}
+        />
 
         <div>
           <div className="container">

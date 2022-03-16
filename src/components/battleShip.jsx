@@ -28,7 +28,6 @@ export default function BattleShip() {
         src={Battleship}
       />
 
-     
       <div>
         <img src={Ship} className="ship" alt="ship" />
         <img src={Ship2} className="ship2" alt="ship2" />

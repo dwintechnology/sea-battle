@@ -4,25 +4,39 @@
     width: 12vw;
     height: 2vw;
     border-radius: 2.5vh;
-    cursor: move;
+    cursor: pointer;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 /* clip-path: polygon(50% 0%, 100% 15%, 100% 100%, 0% 100%, 0% 15%); Для вертикального поворота*/
-
+.isVertical {
+    width: 2vw;
+    height: 12vw;
+    flex-direction: column;
+}
 
 @media screen and (max-width: 900px) {
     .ship6x {
         width: 18vw;
         height: 3vw;
     }
+    .isVertical {
+        width: 3vw;
+        height: 18vw;
+        flex-direction: column;
+    }
+    
 }
 
 @media screen and (max-width: 750px) {
     .ship6x {
         width: 24vw;
         height: 4vw;
+    }
+    .isVertical {
+        width: 4vw;
+        height: 24vw;
     }
 }
 
@@ -31,6 +45,10 @@
         width: 30vw;
         height: 5vw;
     }
+    .isVertical {
+        width: 5vw;
+        height: 30vw;
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -38,11 +56,19 @@
         width: 36vw;
         height: 6vw;
     }
+    .isVertical {
+        width: 6vw;
+        height: 36vw;
+    }
 }
 
 @media screen and (max-width: 400px) {
     .ship6x {
         width: 42vw;
         height: 7vw;
+    }
+    .isVertical {
+        width: 7vw;
+        height: 42vw;
     }
 }

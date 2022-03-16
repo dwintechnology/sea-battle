@@ -11,77 +11,166 @@ import "../styles/Board.css";
 import MarkOnShip from "./MarkOnShip";
 
 Board.propTypes = {
-    versionUser: PropTypes.bool,
-    player: PropTypes.string,
+  versionUser: PropTypes.bool,
+  player: PropTypes.string,
+  changeVertical: PropTypes.bool,
 };
 
 Board.defaultProps = {
-    versionUser: true,
+  versionUser: true,
 };
 
+export default function Board({ versionUser, player, changeVertical = false }) {
+  const obj = useSelector((state) => state);
+  const dispatch = useDispatch();
 
-export default function Board({ versionUser, player }) {
+  function getPosition(i, j) {
+    dispatch({
+      type: "SHOOT",
+      payload: {
+        player: player,
+        positionY: i + 1,
+        positionX: j + 1,
+      },
+    });
+  }
 
-    const obj = useSelector(state => state);
-    const dispatch = useDispatch();
+  function changePosition(i, player) {
+    dispatch({
+      type: "POSITION",
+      payload: {
+        player: player,
+        indexShip: i,
+      },
+    });
+  }
 
-    function getPosition(i, j) {
-        dispatch({
-            type: "SHOOT", payload: {
-                player: player,
-                positionY: i + 1,
-                positionX: j + 1,
-            }
-        });
-    }
-
-    return (
-        <div className="wrapper-grid">
-            <div className="grid-container">
-                <div className="grid-item"></div>
-                {constants.boardLetter.map((el, i) =>
-                    <div key={i} className="grid-item">{el}</div>
-                )}
-                {constants.boardLetter.map((el, i) =>
-                    <>
-                        <div key={i} className="grid-item">{i + 1}</div>
-                        {constants.boardLetter.map((el, j) => {
-                            const shootInPosition = obj[player == "player1" ? "player2Shoots" : "player1Shoots"].find(shoot => shoot.positionX === j + 1 && shoot.positionY === i + 1);
-                            if (versionUser === false && shootInPosition) {
-                                return (
-                                    <div key={el} id={i + 1 + el} className={clsx([versionUser ? "blueBg" : "grayBg", "grid-item , playingField"])}>
-                                        <MarkOnShip state={shootInPosition.isHit} />
-                                    </div>
-                                );
-
-                            }
-                            return (
-                                <div key={el} id={i + 1 + el} onClick={() => { getPosition(i, j); }} className={clsx([versionUser ? "blueBg" : "grayBg", "grid-item , playingField"])}></div>
-                            );
-                        }
-                        )}
-                    </>
-                )}
+  return (
+    <div className="wrapper-grid">
+      <div className="grid-container">
+        <div className="grid-item"></div>
+        {constants.boardLetter.map((el, i) => (
+          <div key={i} className="grid-item">
+            {el}
+          </div>
+        ))}
+        {constants.boardLetter.map((el, i) => (
+          <>
+            <div key={i} className="grid-item">
+              {i + 1}
             </div>
-            {versionUser && <div className="grid-container transparent-grid-container">
-                {obj[player]?.map((el, i) =>
-                    <div key={i} style={{ gridColumnStart: el.positionX, gridColumnEnd: (el.positionX + el.length), gridRowStart: el.positionY }} className="grid-item">
-                        {el.ship === "Ship2x" && <Ship2x state={el.status} />}
-                        {el.ship === "Ship3x" && <Ship3x state={el.status} />}
-                        {el.ship === "Ship4x" && <Ship4x state={el.status} />}
-                        {el.ship === "Ship6x" && <Ship6x state={el.status} />}
-                    </div>
+            {constants.boardLetter.map((el, j) => {
+              const shootInPosition = obj[
+                player == "player1" ? "player2Shoots" : "player1Shoots"
+              ].find(
+                (shoot) =>
+                  shoot.positionX === j + 1 && shoot.positionY === i + 1
+              );
+              if (versionUser === false && shootInPosition) {
+                return (
+                  <div
+                    key={el}
+                    id={i + 1 + el}
+                    className={clsx([
+                      versionUser ? "blueBg" : "grayBg",
+                      "grid-item , playingField",
+                    ])}
+                  >
+                    <MarkOnShip state={shootInPosition.isHit} />
+                  </div>
+                );
+              }
+              return (
+                <div
+                  key={el}
+                  id={i + 1 + el}
+                  onClick={() => {
+                    getPosition(i, j);
+                  }}
+                  className={clsx([
+                    versionUser ? "blueBg" : "grayBg",
+                    "grid-item , playingField",
+                  ])}
+                ></div>
+              );
+            })}
+          </>
+        ))}
+      </div>
+      {versionUser && (
+        <div className="grid-container transparent-grid-container">
+          {obj[player]?.map((el, i) =>
+            el.isHorizontal == true ? (
+              <div
+                onClick={() => {
+                  changeVertical && changePosition(i, player);
+                }}
+                key={i}
+                style={{
+                  gridColumnStart: el.positionX,
+                  gridColumnEnd: el.positionX + el.length,
+                  gridRowStart: el.positionY,
+                }}
+                className="grid-item"
+              >
+                {el.ship === "Ship2x" && <Ship2x state={el.status} />}
+                {el.ship === "Ship3x" && <Ship3x state={el.status} />}
+                {el.ship === "Ship4x" && <Ship4x state={el.status} />}
+                {el.ship === "Ship6x" && <Ship6x state={el.status} />}
+              </div>
+            ) : (
+              <div
+                onClick={() => {
+                  changeVertical && changePosition(i, player);
+                }}
+                key={i}
+                style={{
+                  gridRowStart:
+                    el.positionY - (el.length - 1) <= 1
+                      ? 2
+                      : el.positionY - (el.length - 1),
+                  gridRowEnd:
+                    el.positionY - (el.length - 1) <= 2
+                      ? 2 + el.length
+                      : el.positionY,
+                  gridColumnStart: el.positionX,
+                  display: "block",
+                }}
+                className="grid-item , isVertical"
+              >
+                {el.ship === "Ship2x" && (
+                  <Ship2x state={el.status} isHorizontal={false} />
                 )}
-                {obj[`${player}Shoots`].map((el, i) => {
-                    if (el.isHit == false) {
-                        return (
-                            <div key={i} style={{ gridColumnStart: el.positionX + 1, gridRowStart: el.positionY + 1 }} className="grid-item">
-                                <MarkOnShip state={false} />
-                            </div>
-                        );
-                    }
-                })}
-            </div>}
+                {el.ship === "Ship3x" && (
+                  <Ship3x state={el.status} isHorizontal={false} />
+                )}
+                {el.ship === "Ship4x" && (
+                  <Ship4x state={el.status} isHorizontal={false} />
+                )}
+                {el.ship === "Ship6x" && (
+                  <Ship6x state={el.status} isHorizontal={false} />
+                )}
+              </div>
+            )
+          )}
+          {obj[`${player}Shoots`].map((el, i) => {
+            if (el.isHit == false) {
+              return (
+                <div
+                  key={i}
+                  style={{
+                    gridColumnStart: el.positionX + 1,
+                    gridRowStart: el.positionY + 1,
+                  }}
+                  className="grid-item"
+                >
+                  <MarkOnShip state={false} />
+                </div>
+              );
+            }
+          })}
         </div>
-    );
+      )}
+    </div>
+  );
 }

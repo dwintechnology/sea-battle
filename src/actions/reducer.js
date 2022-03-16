@@ -112,6 +112,7 @@ export const reducer = (state = defaultState, action) => {
             const copy = {
                 ...state
             };
+            let arrFullStatesForShips = [];
             if (findInShots == undefined) {
                 let player = action.payload.player;
                 const positionX = action.payload.positionX;
@@ -130,10 +131,8 @@ export const reducer = (state = defaultState, action) => {
                         isHit: false,
                     });
                 }
-                
 
                 //STUGEL KPACA TE CHE.
-
                 let lastShoot = copy[player == "player1" ? "player2Shoots" : "player1Shoots"][copy[player == "player1" ? "player2Shoots" : "player1Shoots"].length - 1];
                 copy[player == "player1" ? "player2" : "player1"].map((el, index) => {
                     if (copy[player == "player1" ? "player2Shoots" : "player1Shoots"].length != 0 && el.positionX - 1 <= lastShoot.positionX && el.positionY - 1 == lastShoot.positionY && el.isHorizontal == true && (el.positionX - 1 + el.length - 1) >= lastShoot.positionX) {
@@ -142,8 +141,44 @@ export const reducer = (state = defaultState, action) => {
                             copy[player == "player1" ? "player2" : "player1"][index].status[inHitIndex] = true;
                             copy[player == "player1" ? "player2Shoots" : "player1Shoots"][copy[player == "player1" ? "player2Shoots" : "player1Shoots"].length - 1].isHit = true;
                         }
+                    } else if (copy[player == "player1" ? "player2Shoots" : "player1Shoots"].length != 0 && el.positionY <= 2 && el.positionY - 1 <= lastShoot.positionY && el.positionX - 1 == lastShoot.positionX && el.isHorizontal == false && (el.positionY - 1 + el.length - 1) >= lastShoot.positionY) {
+                        if (copy[player == "player1" ? "player2" : "player1"][index].status[(el.length - 1) - ((el.positionY - 1 + el.length - 1) - (lastShoot.positionY))] == false) {
+                            const inHitIndex = (el.length - 1) - ((el.positionY - 1 + el.length - 1) - (lastShoot.positionY));
+                            copy[player == "player1" ? "player2" : "player1"][index].status[inHitIndex] = true;
+                            copy[player == "player1" ? "player2Shoots" : "player1Shoots"][copy[player == "player1" ? "player2Shoots" : "player1Shoots"].length - 1].isHit = true;
+                        }
+                    } else if (copy[player == "player1" ? "player2Shoots" : "player1Shoots"].length != 0 && el.positionY - 1 >= lastShoot.positionY && el.positionX - 1 == lastShoot.positionX && el.isHorizontal == false && (el.positionY - 1 - el.length - 1) <= lastShoot.positionY) {
+                        if (copy[player == "player1" ? "player2" : "player1"][index].status[(el.length - 1) - ((el.positionY - 1) - (lastShoot.positionY))] == false) {
+                            const inHitIndex = (el.length - 1) - ((el.positionY - 1) - (lastShoot.positionY));
+                            copy[player == "player1" ? "player2" : "player1"][index].status[inHitIndex] = true;
+                            copy[player == "player1" ? "player2Shoots" : "player1Shoots"][copy[player == "player1" ? "player2Shoots" : "player1Shoots"].length - 1].isHit = true;
+                        }
                     }
+
+
+
+                    el.status.map(bool => {
+                        arrFullStatesForShips.push(bool);
+                    });
                 });
+                // WINNN
+                if (!arrFullStatesForShips.includes(false)) {
+                    console.log(player ,"YOU WIN!!!!!");
+                }
+            }
+            return copy;
+        }
+        case "POSITION": {
+            const player = action.payload.player;
+            const indexShip = action.payload.indexShip;
+            const copy = {
+                ...state
+            };
+
+            if (copy[player][indexShip].isHorizontal == false) {
+                copy[player][indexShip].isHorizontal = true;
+            } else {
+                copy[player][indexShip].isHorizontal = false;
             }
             return copy;
         }
