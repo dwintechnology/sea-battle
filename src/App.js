@@ -11,7 +11,6 @@ import PlayerOneShoot from "./components/playerOneShoot";
 import PlayerTwoShoot from "./components/playerTwoShoot";
 import TheGame from "./components/TheGame";
 
-
 function App() {
   return (
     <div className="App">

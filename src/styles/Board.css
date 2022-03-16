@@ -4,8 +4,10 @@
 
 .wrapper-grid {
     position: relative;
+    /* width: 24vw; */
+    display: flex;
+    flex-direction: column;
 }
-
 .grid-container {
     --item-size: 2vw;
 
