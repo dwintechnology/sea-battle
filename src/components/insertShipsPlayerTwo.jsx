@@ -72,7 +72,7 @@ function InsertShipsPlayerTwo() {
     <div style={{ backgroundColor: "#0000008a", height: "100vh" }}>
       <div style={{ display: "inline-block" }}>
         <h3 style={{ color: "white" }}>DEAR SECOND PLAYER INSERT YOUR SHIPS</h3>
-        <Board versionUser={true} player={"player2"}>
+        <Board versionUser={true} player={"player2"} changeVertical={true}>
           {obj.player2.map((el, index) => (
             <Draggable
               key={index}

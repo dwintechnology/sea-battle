@@ -10,6 +10,14 @@
     justify-content: space-around;
     align-items: center;
 }
+.isVerticalShip2x {
+    width: 2vw;
+    height: 4vw;
+    flex-direction: column;
+    clip-path: polygon(50% 0%, 100% 15%, 100% 100%, 0% 100%, 0% 15%);
+    border-bottom-right-radius: 1vw;
+    border-bottom-left-radius: 1vw;
+}
 
 @media screen and (max-width: 900px) {
     .ship2x {

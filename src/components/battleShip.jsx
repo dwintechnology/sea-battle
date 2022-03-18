@@ -36,7 +36,7 @@ export default function BattleShip() {
         <img src={Ship4} className="ship4" alt="ship4" />
         <img src={Ship5} className="ship5" alt="ship5" />
       </div>
-      <button  className= "button-32" role="button" onClick={() => navigate("/insert/playerTwo")}>NEXT PLAYER</button>
+      <button  className= "button-33" role="button" onClick={() => navigate("/insert/playerTwo")}>NEXT PLAYER</button>
     </div>
   );
 }

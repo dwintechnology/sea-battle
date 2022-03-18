@@ -1,6 +1,5 @@
-
-
 const defaultState = {
+  win:false,
   currnecyPlayer: "player1",
   player1Shoots: [],
   player2Shoots: [],
@@ -119,7 +118,7 @@ export const reducer = (state = defaultState, action) => {
 
       copy[player][shipIndex].positionX = newPositionX;
       copy[player][shipIndex].positionY = newPositionY;
-      
+
       return copy;
     }
 
@@ -136,6 +135,7 @@ export const reducer = (state = defaultState, action) => {
       const copy = {
         ...state,
       };
+      let arrFullStatesForShips = [];
       if (findInShots == undefined) {
         let player = action.payload.player;
         const positionX = action.payload.positionX;
@@ -190,11 +190,73 @@ export const reducer = (state = defaultState, action) => {
                   .length - 1
               ].isHit = true;
             }
+          } else if (
+            copy[player == "player1" ? "player2Shoots" : "player1Shoots"]
+              .length != 0 &&
+            el.positionY <= 2 &&
+            el.positionY - 1 <= lastShoot.positionY &&
+            el.positionX - 1 == lastShoot.positionX &&
+            el.isHorizontal == false &&
+            el.positionY - 1 + el.length - 1 >= lastShoot.positionY
+          ) {
+            if (
+              copy[player == "player1" ? "player2" : "player1"][index].status[
+                el.length -
+                  1 -
+                  (el.positionY - 1 + el.length - 1 - lastShoot.positionY)
+              ] == false
+            ) {
+              const inHitIndex =
+                el.length -
+                1 -
+                (el.positionY - 1 + el.length - 1 - lastShoot.positionY);
+              copy[player == "player1" ? "player2" : "player1"][index].status[
+                inHitIndex
+              ] = true;
+              copy[player == "player1" ? "player2Shoots" : "player1Shoots"][
+                copy[player == "player1" ? "player2Shoots" : "player1Shoots"]
+                  .length - 1
+              ].isHit = true;
+            }
+          } else if (
+            copy[player == "player1" ? "player2Shoots" : "player1Shoots"]
+              .length != 0 &&
+            el.positionY - 1 >= lastShoot.positionY &&
+            el.positionX - 1 == lastShoot.positionX &&
+            el.isHorizontal == false &&
+            el.positionY - 1 - el.length - 1 <= lastShoot.positionY
+          ) {
+            if (
+              copy[player == "player1" ? "player2" : "player1"][index].status[
+                el.length - 1 - (el.positionY - 1 - lastShoot.positionY)
+              ] == false
+            ) {
+              const inHitIndex =
+                el.length - 1 - (el.positionY - 1 - lastShoot.positionY);
+              copy[player == "player1" ? "player2" : "player1"][index].status[
+                inHitIndex
+              ] = true;
+              copy[player == "player1" ? "player2Shoots" : "player1Shoots"][
+                copy[player == "player1" ? "player2Shoots" : "player1Shoots"]
+                  .length - 1
+              ].isHit = true;
+            }
           }
+
+          el.status.map((bool) => {
+            arrFullStatesForShips.push(bool);
+          });
         });
-
+        // WINNN
+        if (!arrFullStatesForShips.includes(false)) {
+          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+          const copy = {
+            ...state,
+          };
+          copy.win = player;
+          return copy;
+        }
         // player poxel
-
         if (lastShoot.isHit === false) {
           if (copy.currnecyPlayer == "player1") {
             copy.currnecyPlayer = "plaeyr2";
@@ -203,10 +265,21 @@ export const reducer = (state = defaultState, action) => {
           }
         }
       }
-      console.log("statte", copy);
       return copy;
     }
-
+    case "POSITION": {
+      const player = action.payload.player;
+      const indexShip = action.payload.indexShip;
+      const copy = {
+        ...state,
+      };
+      if (copy[player][indexShip].isHorizontal == false) {
+        copy[player][indexShip].isHorizontal = true;
+      } else {
+        copy[player][indexShip].isHorizontal = false;
+      }
+      return copy;
+    }
     default:
       return state;
   }

@@ -40,7 +40,7 @@ export default function GameBattleShip() {
         <img src={Ship5} className="ship5" alt="ship5" />
       </div>
       <button
-      className="button-32"
+      className="button-33"
         onClick={() =>
           navigate(
             obj.currnecyPlayer == "player1"
@@ -49,7 +49,7 @@ export default function GameBattleShip() {
           )
         }
       >
-        <p>next {obj.currnecyPlayer}</p>
+        <p> NEXT</p>
       </button>
     </div>
   );
