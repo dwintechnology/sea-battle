@@ -14,11 +14,10 @@ function InsertShipsPlayerOne() {
   const dispatch = useDispatch();
   const obj = useSelector((state) => state);
 
-
   function showButton() {
     let arr = [];
     let res = false;
-    
+
     obj.player1.map((el) => {
       arr.push(el.positionX);
     });
@@ -47,7 +46,12 @@ function InsertShipsPlayerOne() {
         if (positionY > 0) {
           positionY = newPositionY;
         }
-        if(positionY > 1 && positionY < 12 && elementIndexX + 2 > 1 && elementIndexX + 2 < 12){
+        if (
+          positionY > 1 &&
+          positionY < 12 &&
+          elementIndexX + 2 > 1 &&
+          elementIndexX + 2 < 12
+        ) {
           dispatch({
             type: "SET_SHIP_POSITION",
             payload: {
@@ -57,6 +61,8 @@ function InsertShipsPlayerOne() {
               shipIndex: index,
             },
           });
+        } else {
+          alert("Please steer the boat onto the board");
         }
       }
     });
@@ -112,13 +118,15 @@ function InsertShipsPlayerOne() {
           ))}
         </Board>
 
-        {showButton() && <button
-        style={{marginTop:"5%"}}
-          className="button-32"
-          onClick={() => navigate("/insert/battleShip")}
-        >
-          next
-        </button>}
+        {showButton() && (
+          <button
+            style={{ marginTop: "5%" }}
+            className="button-32"
+            onClick={() => navigate("/insert/battleShip")}
+          >
+            next
+          </button>
+        )}
       </div>
     </div>
   );

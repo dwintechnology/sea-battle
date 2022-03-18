@@ -50,7 +50,7 @@ function InsertShipsPlayerTwo() {
           positionY > 1 &&
           positionY < 12 &&
           elementIndexX + 2 > 1 &&
-          elementIndexX + 2 < 12
+          elementIndexX + 2 < 12  
         ) {
           dispatch({
             type: "SET_SHIP_POSITION",
@@ -62,7 +62,7 @@ function InsertShipsPlayerTwo() {
             },
           });
         }else {
-          alert("aaaaaaa");
+          alert("Please steer the boat onto the board");
         }
       } 
     });
