@@ -7,11 +7,27 @@ import Ship2x from "./Ship2x";
 import Ship3x from "./Ship3x";
 import Ship4x from "./Ship4x";
 import Ship6x from "./Ship6x";
+import "../styles/buttons.css";
 
 function InsertShipsPlayerOne() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const obj = useSelector((state) => state);
+
+
+  function showButton() {
+    let arr = [];
+    let res = false;
+    
+    obj.player1.map((el) => {
+      arr.push(el.positionX);
+    });
+    if (!arr.includes(false)) {
+      res = true;
+    }
+
+    return res;
+  }
 
   const eventLogger = (e, data, index) => {
     const firstCell = document.getElementById("1A");
@@ -31,69 +47,79 @@ function InsertShipsPlayerOne() {
         if (positionY > 0) {
           positionY = newPositionY;
         }
-        dispatch({
-          type: "SET_SHIP_POSITION",
-          payload: {
-            player: "player1",
-            positionY,
-            positionX: elementIndexX + 2,
-            shipIndex: index,
-          },
-        });
+        if(positionY > 1 && positionY < 12 && elementIndexX + 2 > 1 && elementIndexX + 2 < 12){
+          dispatch({
+            type: "SET_SHIP_POSITION",
+            payload: {
+              player: "player1",
+              positionY,
+              positionX: elementIndexX + 2,
+              shipIndex: index,
+            },
+          });
+        }
       }
     });
   };
 
   return (
-    <div style={{ display: "inline-block" }}>
-      <h3>First player insert your ships</h3>
-      <Board versionUser={true} player={"player1"}>
-        {obj?.player1?.map((el, index) => (
-          <Draggable
-            key={index}
-            defaultPosition={{ x: 50, y: 0 }}
-            onStop={(e, d) => eventLogger(e, d, index)}
-            bounds="parent"
-          >
-            <div key={index} style={{ width: "fit-content" }}>
-              {el.ship === "Ship2x" &&
-                el.positionX == false &&
-                el.positionY == false && (
-                  <Ship2x
-                    state={el.status}
-                    style={{ display: "inline-block" }}
-                  />
-                )}
-              {el.ship === "Ship3x" &&
-                el.positionX == false &&
-                el.positionY == false && (
-                  <Ship3x
-                    state={el.status}
-                    style={{ display: "inline-block" }}
-                  />
-                )}
-              {el.ship === "Ship4x" &&
-                el.positionX == false &&
-                el.positionY == false && (
-                  <Ship4x
-                    state={el.status}
-                    style={{ display: "inline-block" }}
-                  />
-                )}
-              {el.ship === "Ship6x" &&
-                el.positionX == false &&
-                el.positionY == false && (
-                  <Ship6x
-                    state={el.status}
-                    style={{ display: "inline-block" }}
-                  />
-                )}
-            </div>
-          </Draggable>
-        ))}
-      </Board>
+    <div style={{ backgroundColor: "#0000008a", height: "100vh" }}>
+      <div style={{ display: "inline-block" }}>
+        <h3 style={{ color: "white" }}>DEAR FIRST PLAYER INSERT YOUR SHIPS</h3>
+        <Board versionUser={true} player={"player1"}>
+          {obj?.player1?.map((el, index) => (
+            <Draggable
+              key={index}
+              defaultPosition={{ x: 50, y: 0 }}
+              onStop={(e, d) => eventLogger(e, d, index)}
+              bounds="parent"
+            >
+              <div key={index} style={{ width: "fit-content" }}>
+                {el.ship === "Ship2x" &&
+                  el.positionX == false &&
+                  el.positionY == false && (
+                    <Ship2x
+                      state={el.status}
+                      style={{ display: "inline-block" }}
+                    />
+                  )}
+                {el.ship === "Ship3x" &&
+                  el.positionX == false &&
+                  el.positionY == false && (
+                    <Ship3x
+                      state={el.status}
+                      style={{ display: "inline-block" }}
+                    />
+                  )}
+                {el.ship === "Ship4x" &&
+                  el.positionX == false &&
+                  el.positionY == false && (
+                    <Ship4x
+                      state={el.status}
+                      style={{ display: "inline-block" }}
+                    />
+                  )}
+                {el.ship === "Ship6x" &&
+                  el.positionX == false &&
+                  el.positionY == false && (
+                    <Ship6x
+                      state={el.status}
+                      style={{ display: "inline-block" }}
+                    />
+                  )}
+              </div>
+            </Draggable>
+          ))}
+        </Board>
 
-      <button onClick={() => navigate("/insert/battleShip")}>next</button>
+        {showButton() && <button
+        style={{marginTop:"5%"}}
+          className="button-32"
+          onClick={() => navigate("/insert/battleShip")}
+        >
+          next
+        </button>}
+      </div>
     </div>
   );
 }

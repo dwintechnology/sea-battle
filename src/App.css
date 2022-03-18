@@ -1,9 +1,10 @@
-/* .App {
-  text-align: center;
+.App {
+  background-image: url("https://s1.1zoom.me/b5050/168/Ships_Airplane_War_444104_2560x1440.jpg");
+  height: 100vh;
 }
 
 
-
+/* 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

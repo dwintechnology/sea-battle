@@ -4,7 +4,6 @@
 
 .wrapper-grid {
     position: relative;
-    /* width: 24vw; */
     display: flex;
     flex-direction: column;
 }
@@ -18,7 +17,7 @@
     grid-template-columns: repeat(11, var(--item-size));
     grid-template-rows: repeat(11, var(--item-size));
     grid-auto-rows: var(--item-size);
-    color: rgba(113, 124, 150, 0.7);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 12px;
     font-weight: 900;
 }
